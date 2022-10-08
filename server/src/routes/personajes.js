@@ -1,5 +1,6 @@
 const axios = require('axios');
 const router = require('express').Router();
+const redisClient = require('../redis');
 const env = require('dotenv').config().parsed;
 
 router.get('/personajes', async (req, res, next) => {
