@@ -2,7 +2,7 @@ const axios = require('axios');
 const redisClient = require('../redis');
 const env = require('dotenv').config().parsed;
 
-const REDIS_ALL_PERSONAJES_KEY = 'all_personajes';
+const REDIS_ALL_PERSONAJES_KEY = 'all_personajess';
 const REDIS_PERSONAJE_KEY = 'personajes_';
 
 const process_personaje_api = data => {
@@ -25,7 +25,7 @@ const process_personajes_api = data => {
             personajes.push({
                 id: personaje.id,
                 nombre: personaje.name,
-                image: personaje.image
+                //image: personaje.image
                 // status: personaje.status,
                 // genero: personaje.gender,
                 // especie: personaje.species,

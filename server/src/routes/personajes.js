@@ -9,12 +9,15 @@ const personajes_controller = require('../controller/personajes');
 router.get('/personajes', async (req, res, next) => {
     try {
         const queryObject = url.parse(req.url, true).query;
-        let name = queryObject.name;
-        if (name)
-            if (validator.isAscii(name))
-                name = validator.escape(name);
-        if (name)
-            res.status(200).send(await personajes_controller.filterPersonajeByName(name));
+        let nombre;
+        let hay_nombre = queryObject.nombre;
+        if (hay_nombre)
+            if (validator.isAscii(hay_nombre))
+                nombre = validator.escape(hay_nombre);
+            else
+                hay_nombre = false;
+        if (hay_nombre)
+            res.status(200).send(await personajes_controller.filterPersonajeByName(nombre));
         else
             res.status(200).send(await personajes_controller.getAllPersonajes());
     }
