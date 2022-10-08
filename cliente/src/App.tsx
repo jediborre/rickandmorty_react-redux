@@ -1,9 +1,11 @@
 import './App.css';
+import SearchBar from './components/SearchBar/SearchBar';
 
 function App() {
   return (
     <>
-      <h1>Prueba React Ricky y Monty</h1>
+      
+      <SearchBar />
     </>
   );
 }
