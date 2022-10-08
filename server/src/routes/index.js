@@ -8,6 +8,7 @@ router.get('/', async (req, res, next) => {
         autor: 'Fernando Borrego V.',
         GET: {
             '/api/personajes': 'Lista de personajes',
+            '/api/personajes?name=nombre': 'Lista de personajes filtrados por nombre.',
             '/api/personajes/:id': 'Detalles de un personaje',
         }
     });

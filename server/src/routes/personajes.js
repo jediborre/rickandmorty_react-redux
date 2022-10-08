@@ -1,24 +1,34 @@
-const axios = require('axios');
+
+const validator = require('validator');
+const querystring = require('querystring');
+const url = require('url');
 const router = require('express').Router();
-const redisClient = require('../redis');
-const env = require('dotenv').config().parsed;
+const personajes_controller = require('../controller/personajes');
+
 
 router.get('/personajes', async (req, res, next) => {
     try {
-        const personaje = await redisClient.get("personajes");
-        if (personaje)
-            return res.status(200).send(JSON.parse(personaje));
-
-        const api_response = await axios.get(env.API_URL);
-        await redisClient.set(
-            "personajes",
-            JSON.stringify(api_response.data), {
-              EX: env.DATA_EXPIRATION,
-            }
-        );
-        res.status(200).send(api_response.data);
+        const queryObject = url.parse(req.url, true).query;
+        let name = queryObject.name;
+        if (name)
+            if (validator.isAscii(name))
+                name = validator.escape(name);
+        if (name)
+            res.status(200).send(await personajes_controller.filterPersonajeByName(name));
+        else
+            res.status(200).send(await personajes_controller.getAllPersonajes());
     }
     catch (err) {
+        console.log(err);
+        res.status(500).send({ msj: err.message});
+    }
+});
+router.get('/personajes/:id', async (req, res, next) => {
+    try {     
+        res.status(200).send(await personajes_controller.getPeronsajeById(req.params.id));
+    }
+    catch (err) {
+        console.log(err);
         res.status(500).send({ msj: err.message});
     }
 });
