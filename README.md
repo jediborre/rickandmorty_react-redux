@@ -1,4 +1,4 @@
-# EJERCICIO PRÁCTICO REACT-REDUX NODE
+# EJERCICIO PRÁCTICO REACT-REDUX/NODE
 
 Realiza una app con esta api https://rickandmortyapi.com/ la app deberá de contar con los siguientes elementos:  
 a) Una barra de búsqueda donde se pueda buscar por nombre de personaje  
