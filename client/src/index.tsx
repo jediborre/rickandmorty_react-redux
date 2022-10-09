@@ -1,5 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+// import { store } from './app/store';
+// import { Provider } from 'react-redux'
+import { ApiProvider } from '@reduxjs/toolkit/dist/query/react';
+import { apiSlice } from './app/api';
 import App from './App';
 
 const root = ReactDOM.createRoot(
@@ -7,6 +11,8 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <ApiProvider api={apiSlice}>
+      <App />
+    </ApiProvider>
   </React.StrictMode>
 );
