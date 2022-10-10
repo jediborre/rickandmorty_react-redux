@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import banner from '../img/banner.jpg';
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import SearchBar from '../components/SearchBar/SearchBar';
 import PersonajeCard from '../components/PersonajeCard/PersonajeCard';
 import PersonajeDetalle from '../components/PersonajeDetalle/PersonajeDetalle';
@@ -15,6 +15,7 @@ export interface PersonajesInterface {}
 
 const Personajes : React.FC<PersonajesInterface> = () => {
 	let noHayPesonajes: boolean = false;
+	const [showModal, setShowModal] = useState(false);
 	const [searchTerm, setSearchTerm] = useState('');
 	const [selectedId, setSelectedId] = useState('')
 
@@ -41,7 +42,7 @@ const Personajes : React.FC<PersonajesInterface> = () => {
 				tarjetas =
 					<>
 						{personajeByNombre.map((personaje) => (
-							<PersonajeCard key={personaje.id} id={personaje.id} nombre={personaje.nombre} click={(pId) => setSelectedId(pId)} />
+							<PersonajeCard key={personaje.id} id={personaje.id} nombre={personaje.nombre} click={(pId) => { setSelectedId(pId); setShowModal(true); }} />
 						))}
 					</>
 			}
@@ -50,7 +51,7 @@ const Personajes : React.FC<PersonajesInterface> = () => {
 			tarjetas =
 				<>
 					{personajesAll.map((personaje) => (
-						<PersonajeCard key={personaje.id} id={personaje.id} nombre={personaje.nombre} click={(pId) => setSelectedId(pId)} />
+						<PersonajeCard key={personaje.id} id={personaje.id} nombre={personaje.nombre} click={(pId) => { setSelectedId(pId); setShowModal(true); }} />
 					))}
 				</>
     	}
@@ -74,9 +75,8 @@ const Personajes : React.FC<PersonajesInterface> = () => {
 					</div>
 				)
 			}
-			{	
-			<AnimatePresence>
-				{selectedId && personajeById && (
+			{selectedId && personajeById && (
+				<div className={showModal ? "block" : "hidden"}>
 					<PersonajeDetalle
 						id={selectedId}
 						name={personajeById.name}
@@ -84,11 +84,10 @@ const Personajes : React.FC<PersonajesInterface> = () => {
 						status={personajeById.status}
 						location={personajeById.location}
 						image={personajeById.image}
-						onclick={(lID) => setSelectedId('')}
+						onClose={(show) => setShowModal(show)}
 					/>
-				)}
-			</AnimatePresence>
-			}
+					</div>
+			)}
 			<div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
 				{tarjetas}
 			</div>
