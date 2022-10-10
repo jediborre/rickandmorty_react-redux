@@ -18,7 +18,7 @@ type Personajes = Personaje[];
 export const apiSlice = createApi({
     reducerPath: 'api',
     baseQuery: retry(
-        fetchBaseQuery({ baseUrl: process.env.NODE_SERVER }), { maxRetries: 6 }
+        fetchBaseQuery({ baseUrl: 'https://rickandmortyexpress-production.up.railway.app/' }), { maxRetries: 6 }
     ),
     tagTypes: ['Personajes'],
     endpoints: (builder) => ({
