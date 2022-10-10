@@ -1,13 +1,15 @@
 const express = require('express');
-const axios = require('axios');
 const responseTime = require('response-time');
 const redisClient = require('./redis');
+const cors = require('cors');
+
 
 const env = require('dotenv').config().parsed;
 const port = Number(env.NODE_PORT);
 
 const app = express();
 
+app.use(cors());
 app.use(responseTime((req, res, time) =>{
     console.log(req.url, req.method, time, 'ms');
 }));

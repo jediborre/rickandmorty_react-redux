@@ -84,11 +84,13 @@ const personajes = {
             throw err;
         }
     },
-    filterPersonajeByName: async (name) => {
+    filterPersonajeByName: async (nombre) => {
         try {
+            if (nombre.length < 3)
+                return [];
             const all_personajes = await personajes.getAllPersonajes();
             return all_personajes.filter(personaje =>
-                personaje.nombre.toLowerCase().includes(name.toLowerCase()
+                personaje.nombre.toLowerCase().includes(nombre.toLowerCase()
             ));
         }
         catch (err) {
