@@ -13,11 +13,11 @@ i) Podrás ocupar un diseño libre.
 
 ![Rick y Morty en React](img/captura1.jpg?raw=true "Rick y Morty en React")  
 
-Mediante railway.app se hosteo el Backend  
-Mediante github pages se hosteo el Front-End  
-
 El proyecto se puede visualizar en  
 https://jediborre.github.io/RickandMortyTest/  
+
+Mediante railway.app se hosteo el Backend  
+Mediante github pages se hosteo el Front-End  
 
 Se hosteo la parte de Nodejs/Redis en:  
 Servidor Node  
@@ -25,3 +25,21 @@ rickandmortyexpress-production.up.railway.app
 
 Servidor redis  
 containers-us-west-80.railway.app  
+
+En el repositorio se puede ver dos carpetas:  
+client -> Donde se programo la parte de React/Redux
+server -> Donde se programo la parte de Node/Express
+
+Para correr el server ese necesario
+```bash
+cd server
+npm install
+npm run dev
+```
+
+Para correr el Cliente
+```bash
+cd client
+npm install
+npm start
+```
