@@ -1,6 +1,6 @@
 {
   "name": "rickandmorty_react-redux-express",
-  "homepage":"https://jediborre.github.io/repository-name",
+  "homepage": "https://jediborre.github.io/repository-name",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -17,6 +17,7 @@
     "@types/react-dom": "^18.0.6",
     "dotenv": "^16.0.3",
     "framer-motion": "^7.5.3",
+    "gh-pages": "^4.0.0",
     "react": "^18.2.0",
     "react-content-loader": "^6.2.0",
     "react-debounce-input": "^3.3.0",
