@@ -27,12 +27,12 @@ Servidor redis
 containers-us-west-80.railway.app  
 
 En el repositorio se puede ver dos carpetas:  
-client -> Donde se programo la parte de React/Redux
+client -> Donde se programo la parte de React/Redux  
 server -> Donde se programo la parte de Node/Express
 
 Para correr el server ese necesario
 ```bash
-cd server
+    cd server
 npm install
 npm run dev
 ```
@@ -42,4 +42,52 @@ Para correr el Cliente
 cd client
 npm install
 npm start
+```  
+
+Particularidades Server  
+Básicamente cuando se hace una peticion al server este realiza una copia de la API https://rickandmortyapi.com/api/character
+y reduciendola para solo mantener los datos utilizados solamente.
+```javascript
+//https://rickandmortyexpress-production.up.railway.app/
+{
+    msj: "Bienvenidos a la API de Rick y Morty.",
+    api: "https://rickandmortyapi.com/api/character",
+    autor: "Fernando Borrego V.",
+    GET: {
+        /api/personajes: "Lista de personajes",
+        /api/personajes?nombre=nombre: "Lista de personajes filtrados por nombre.",
+        /api/personajes/:id: "Detalles de un personaje"
+    }
+}
+//Ej API Personajes
+//https://rickandmortyexpress-production.up.railway.app/api/personajes
+[{
+    id: 1,
+    nombre: "Rick Sanchez"
+}, {
+    id: 2,
+    nombre: "Morty Smith"
+}, {
+    id: 3,
+    nombre: "Summer Smith"
+}, {
+    id: 4,
+    nombre: "Beth Smith"
+}, {
+    id: 5,
+    nombre: "Jerry Smith"
+}, ...
+]
+//Ej. Personaje
+//https://rickandmortyexpress-production.up.railway.app/api/personajes/1
+{
+    id: 1,
+    name: "Rick Sanchez",
+    status: "Alive",
+    species: "Human",
+    type: "",
+    image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+    location: "Citadel of Ricks"
+}
 ```
+
