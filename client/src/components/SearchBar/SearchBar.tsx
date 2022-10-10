@@ -2,7 +2,7 @@ import React from 'react';
 import {DebounceInput} from 'react-debounce-input';
 
 export interface SearchBarInterface {
-	onSearchTerm: (term: string) => void;
+	onSearchTerm: (nombre: string) => void;
 }
 
 const SearchBar : React.FC<SearchBarInterface> = ({onSearchTerm}): JSX.Element => {
