@@ -29,7 +29,7 @@ export const apiSlice = createApi({
         getPersonajeByNombre: builder.query<Personajes, string>({
             query: (nombre) => `/api/personajes?nombre=${encodeURIComponent(nombre)}`,
         }),
-        getPersonaje: builder.query<PersonajeDetail, number>({
+        getPersonajeById: builder.query<PersonajeDetail, string>({
             query: (id) => `/api/personajes/${id}`
         }),
     })
@@ -37,6 +37,6 @@ export const apiSlice = createApi({
 
 export const {
     useGetPersonajesQuery,
-    useGetPersonajeQuery,
+    useGetPersonajeByIdQuery,
     useGetPersonajeByNombreQuery
 } = apiSlice

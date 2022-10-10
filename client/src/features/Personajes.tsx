@@ -1,21 +1,26 @@
 import {useState} from 'react';
 import banner from '../img/banner.jpg';
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import SearchBar from '../components/SearchBar/SearchBar';
 import PersonajeCard from '../components/PersonajeCard/PersonajeCard';
+import PersonajeDetalle from '../components/PersonajeDetalle/PersonajeDetalle';
 import PersonajeLoadingCard from '../components/PersonajeLoadingCard/PersonajeLoadingCard';
-import { useGetPersonajesQuery, useGetPersonajeByNombreQuery } from '../app/api';
+import {
+	useGetPersonajesQuery,
+	useGetPersonajeByIdQuery,
+	useGetPersonajeByNombreQuery
+} from '../app/api';
 
 export interface PersonajesInterface {}
 
 const Personajes : React.FC<PersonajesInterface> = () => {
 	let noHayPesonajes: boolean = false;
 	const [searchTerm, setSearchTerm] = useState('');
-	// const [error, setError] = useState('');
-	// const [hayError, setHayError] = useState(false);
+	const [selectedId, setSelectedId] = useState('')
 
-  	const {data: personajesAll, isLoading, isSuccess} = useGetPersonajesQuery()
-  	const {data: personajeByNombre} = useGetPersonajeByNombreQuery(searchTerm)
+  	const {data: personajesAll, isLoading, isSuccess} = useGetPersonajesQuery();
+  	const {data: personajeByNombre} = useGetPersonajeByNombreQuery(searchTerm);
+	const {data: personajeById} = useGetPersonajeByIdQuery(selectedId);
   
   	let tarjetas;
   	if (isLoading) {
@@ -36,7 +41,7 @@ const Personajes : React.FC<PersonajesInterface> = () => {
 				tarjetas =
 					<>
 						{personajeByNombre.map((personaje) => (
-							<PersonajeCard key={personaje.id} id={personaje.id} nombre={personaje.nombre} />
+							<PersonajeCard key={personaje.id} id={personaje.id} nombre={personaje.nombre} click={(pId) => setSelectedId(pId)} />
 						))}
 					</>
 			}
@@ -45,7 +50,7 @@ const Personajes : React.FC<PersonajesInterface> = () => {
 			tarjetas =
 				<>
 					{personajesAll.map((personaje) => (
-						<PersonajeCard key={personaje.id} id={personaje.id} nombre={personaje.nombre} />
+						<PersonajeCard key={personaje.id} id={personaje.id} nombre={personaje.nombre} click={(pId) => setSelectedId(pId)} />
 					))}
 				</>
     	}
@@ -68,6 +73,21 @@ const Personajes : React.FC<PersonajesInterface> = () => {
 						</motion.div>
 					</div>
 				)
+			}
+			{	
+			<AnimatePresence>
+				{selectedId && personajeById && (
+					<PersonajeDetalle
+						id={selectedId}
+						name={personajeById.name}
+						species={personajeById.species}
+						status={personajeById.status}
+						location={personajeById.location}
+						image={personajeById.image}
+						onclick={(lID) => setSelectedId('')}
+					/>
+				)}
+			</AnimatePresence>
 			}
 			<div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
 				{tarjetas}
