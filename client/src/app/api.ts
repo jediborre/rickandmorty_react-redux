@@ -18,7 +18,7 @@ type Personajes = Personaje[];
 export const apiSlice = createApi({
     reducerPath: 'api',
     baseQuery: retry(
-        fetchBaseQuery({ baseUrl: 'http://localhost:3000' }), { maxRetries: 6 }
+        fetchBaseQuery({ baseUrl: process.env.NODE_SERVER }), { maxRetries: 6 }
     ),
     tagTypes: ['Personajes'],
     endpoints: (builder) => ({
@@ -33,7 +33,7 @@ export const apiSlice = createApi({
             query: (id) => `/api/personajes/${id}`
         }),
     })
-})
+});
 
 export const {
     useGetPersonajesQuery,
