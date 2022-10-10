@@ -10,3 +10,18 @@ f) Se deberán de mostrar en cards los resultados de la busqueda.
 g) Al dar click en cada card deberá de mostrar los datos individuales de cada personaje.  
 h) Deberá de contener al menos un elemento de animación.  
 i) Podrás ocupar un diseño libre.  
+
+![Rick y Morty en React](img/captura1.jpg?raw=true "Rick y Morty en React")  
+
+Mediante railway.app se hosteo el Backend  
+Mediante github pages se hosteo el Front-End  
+
+El proyecto se puede visualizar en  
+https://jediborre.github.io/RickandMortyTest/  
+
+Se hosteo la parte de Nodejs/Redis en:  
+Servidor Node  
+rickandmortyexpress-production.up.railway.app  
+
+Servidor redis  
+containers-us-west-80.railway.app  
