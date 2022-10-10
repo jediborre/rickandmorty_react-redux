@@ -1,5 +1,6 @@
 {
-  "name": "RickandMorty-redux",
+  "name": "rickandmorty_react-redux-express",
+  "homepage":"https://jediborre.github.io/repository-name",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -28,6 +29,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "desploy": "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
