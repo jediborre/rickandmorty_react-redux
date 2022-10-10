@@ -15,10 +15,10 @@ const Personajes : React.FC<PersonajesInterface> = () => {
   
   let contenidoPersonajes;
   if (isLoading) {
-    let ncards = 12
+    let preloadCards = 12
     contenidoPersonajes =
     <>
-      {[...Array(ncards)].map((x, n) =>
+      {[...Array(preloadCards)].map((x, n) =>
         (<PersonajeLoadingCard key={n} />)
       )}
     </>
